@@ -20,6 +20,8 @@ class MoviesController < ApplicationController
 	def update
 		@movie = Movie.find params[:id]
 		@movie.update_attributes!(params[:movie])
+		respond_to do |client_wants|
+			client_wants.html {redirect_to movie_path(@movie)} #as before
 		flash[:notice] = "#{@movie.title} was succesfully updated."
 		redirect_to movie_path(@movie)
 	end
